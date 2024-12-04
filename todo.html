@@ -1,0 +1,98 @@
+<html>
+<head>
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #cf8ab9;
+    }
+    #full {
+      background-color: #ece6e6;
+      padding: 20px;
+      margin: 50px auto;
+      border-radius: 8px;
+      max-width: 400px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    input {
+      padding: 8px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 8px 8px;
+      background-color: #cf8ab9;
+      color: rgb(21, 17, 17);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #5c0e62;
+    }
+    ul {
+      padding-left: 20px;
+      margin-top: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    li button {
+      background-color: #cf8ab9;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    li button:hover {
+      background-color: #5c0e62;
+    }
+  </style>
+</head>
+<body>
+  <div id="full">
+    <h1>To-Do List</h1>
+    <input id="text" type="text" placeholder="Enter a task">
+    <button id="add">Add</button>
+    <ul id="ul"></ul>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#add").click(function () {
+        const task = $("#text").val().trim(); // Get the input value
+        if (task) {
+          // Create a new list item
+          const newLi = $("<li></li>").text(task);
+
+          // Create a "Remove" button
+          const newButton = $("<button></button>").text("Remove").click(function () {
+            $(this).parent().remove(); // Remove the parent <li>
+          });
+
+          // Append the button to the list item
+          newLi.append(newButton);
+
+          // Append the list item to the unordered list
+          $("#ul").append(newLi);
+
+          // Clear the input field
+          $("#text").val("");
+        } else {
+          alert("Please enter a task!");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
